@@ -5,10 +5,10 @@ import Logo from "./logo/Logo";
 
 const Header = () => {
     return (
-        <>
+        <header>
             <Logo/>
             <NavBar/>
-        </>
+        </header>
     );
 };
 
