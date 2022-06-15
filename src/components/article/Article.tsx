@@ -1,8 +1,8 @@
-import {Grid} from '@mui/material';
 import React from 'react';
+import {Grid} from '@mui/material';
 import styled from "styled-components";
-import CommentForm from "../commentForm/CommentForm";
 import {IComment} from "../../types/types";
+import CommentForm from "../commentForm/CommentForm";
 
 const StyledH1 = styled.h1`
   color: #282c34;
@@ -37,25 +37,32 @@ const StyledCommentBlock = styled.div`
 
 interface IArticleProps {
     commentsArray: IComment[]
+    handleAddComment: (newComment: IComment) => void
+    handleChangeLikeCount: (method: "plus" | "minus", commentId: number) => void
 }
 
-const Article:React.FC<IArticleProps> = ({commentsArray}) => {
+const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, handleChangeLikeCount}) => {
 
-    const commentsToRender = commentsArray.map((item)=>{
-        return(
+    const commentsToRender = commentsArray.map((item) => {
+        return (
             <div key={item.id}>
                 <span>{item.name}</span>
                 <span>{item.email}</span>
                 <span>{item.comment}</span>
                 <span>{item.likeCount}</span>
                 <span>{item.createDate}</span>
+                <button onClick={()=>handleChangeLikeCount("plus",item.id)}>+</button>
+                <button onClick={()=>handleChangeLikeCount("minus",item.id)}>-</button>
             </div>
         )
     })
 
     return (
         <main>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{
+                margin: "0 auto",
+                maxWidth: 1096
+            }}>
                 <Grid item xs={8}>
                     <StyledH1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores assumenda
                         atque
@@ -147,7 +154,7 @@ const Article:React.FC<IArticleProps> = ({commentsArray}) => {
                     </StyledCommentBlock>
                 </Grid>
                 <Grid item xs={8}>
-                    <CommentForm callback={() => {}}/>
+                    <CommentForm handleAddComment={handleAddComment}/>
                 </Grid>
             </Grid>
         </main>

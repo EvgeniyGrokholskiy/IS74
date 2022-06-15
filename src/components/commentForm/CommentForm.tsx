@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+import {IComment} from "../../types/types";
 
 const StyledFormWrapper = styled.div`
   padding: 50px;
@@ -34,10 +35,10 @@ interface IFormState {
 }
 
 interface ICommentFormProps {
-    callback: () => void
+    handleAddComment: (newComment: IComment) => void
 }
 
-const CommentForm: React.FC<ICommentFormProps> = ({callback}) => {
+const CommentForm: React.FC<ICommentFormProps> = ({handleAddComment}) => {
 
     const [formState, setFormState] = useState<IFormState>({
         name: "",
@@ -56,8 +57,7 @@ const CommentForm: React.FC<ICommentFormProps> = ({callback}) => {
             likeCount: 0
         }
         event.preventDefault()
-        callback()
-        console.log(newComment);
+        handleAddComment(newComment)
         setFormState({name: "", email: "", comment: ""})
     }
 

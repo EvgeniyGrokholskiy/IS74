@@ -1,9 +1,9 @@
 import './App.css';
 import React, {useState} from 'react';
+import {IComment} from './types/types';
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Article from "./components/article/Article";
-import {IComment} from './types/types';
 
 
 function App() {
@@ -27,10 +27,26 @@ function App() {
         }
     ])
 
+    const handleAddComment = (newComment: IComment) => {
+        setComments((prevState) => {
+            return prevState.concat([newComment])
+        })
+    }
+
+    const handleChangeLikeCount = (method: "plus" | "minus", commentId: number) => {
+        setComments(comments.map((item) => {
+            if (item.id === commentId) {
+                method === "plus" ? item.likeCount++ : item.likeCount--
+                return item
+            }
+            return item
+        }))
+    }
+
     return (
         <div className="App">
             <Header/>
-            <Article commentsArray={comments}/>
+            <Article commentsArray={comments} handleAddComment={handleAddComment} handleChangeLikeCount={handleChangeLikeCount}/>
             <Footer/>
         </div>
     );
