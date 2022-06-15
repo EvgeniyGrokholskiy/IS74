@@ -14,7 +14,7 @@ function App() {
             name: "Иван",
             email: "123456789@74.ru",
             comment: "Статья огонь, латынь-супер",
-            createDate: 1,
+            createDate: 1655296594000,
             likeCount: 0
         },
         {
@@ -22,7 +22,7 @@ function App() {
             name: "Васья",
             email: "987654321@74.ru",
             comment: "Многа букаф не асилел",
-            createDate: 100000000,
+            createDate: 1655282194000,
             likeCount: 0
         }
     ])
@@ -33,7 +33,7 @@ function App() {
         })
     }
 
-    const handleChangeLikeCount = (method: "plus" | "minus", commentId: number) => {
+    const handleChangeLikeCount = (method: string, commentId: number) => {
         setComments(comments.map((item) => {
             if (item.id === commentId) {
                 method === "plus" ? item.likeCount++ : item.likeCount--

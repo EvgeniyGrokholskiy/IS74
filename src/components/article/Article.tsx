@@ -3,6 +3,7 @@ import {Grid} from '@mui/material';
 import styled from "styled-components";
 import {IComment} from "../../types/types";
 import CommentForm from "../commentForm/CommentForm";
+import CommentItem from "../commentItem/CommentItem";
 
 const StyledH1 = styled.h1`
   color: #282c34;
@@ -38,22 +39,14 @@ const StyledCommentBlock = styled.div`
 interface IArticleProps {
     commentsArray: IComment[]
     handleAddComment: (newComment: IComment) => void
-    handleChangeLikeCount: (method: "plus" | "minus", commentId: number) => void
+    handleChangeLikeCount: (method: string, commentId: number) => void
 }
 
 const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, handleChangeLikeCount}) => {
 
     const commentsToRender = commentsArray.map((item) => {
         return (
-            <div key={item.id}>
-                <span>{item.name}</span>
-                <span>{item.email}</span>
-                <span>{item.comment}</span>
-                <span>{item.likeCount}</span>
-                <span>{item.createDate}</span>
-                <button onClick={()=>handleChangeLikeCount("plus",item.id)}>+</button>
-                <button onClick={()=>handleChangeLikeCount("minus",item.id)}>-</button>
-            </div>
+            <CommentItem key={item.id} commentItem={item} handleChangeLikeCount={handleChangeLikeCount}/>
         )
     })
 
