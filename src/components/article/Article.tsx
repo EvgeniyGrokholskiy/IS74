@@ -1,15 +1,20 @@
 import React from 'react';
-import {Grid} from '@mui/material';
 import styled from "styled-components";
-import {IComment} from "../../types/types";
+import {Grid, Skeleton, Stack} from '@mui/material';
 import CommentForm from "../commentForm/CommentForm";
 import CommentItem from "../commentItem/CommentItem";
+import {IArticleProps, IComment} from "../../types/types";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
 const StyledH1 = styled.h1`
   color: #282c34;
   margin: 20px auto;
   padding: 0 50px;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+    padding: 0 1%;
+  }
 `
 
 const StyledParagraph = styled.p`
@@ -17,15 +22,17 @@ const StyledParagraph = styled.p`
   padding: 0 50px;
   text-align: justify;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+    padding: 0 1%;
+  }
 `
 
 const StyledSideBarPlaceholder = styled.h2`
-  font-size: 30px;
-  line-height: 100%;
-  margin: 0 auto;
-  padding-top: 50px;
-  text-align: center;
-  writing-mode: vertical-lr;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 2%;
 `
 
 const StyledCommentBlock = styled.div`
@@ -34,17 +41,15 @@ const StyledCommentBlock = styled.div`
   gap: 10px;
   margin: 20px 0;
   padding: 0 50px;
+  @media screen and (max-width: 600px) {
+    padding: 0 1%;
+  }
 `
 
-interface IArticleProps {
-    commentsArray: IComment[]
-    handleAddComment: (newComment: IComment) => void
-    handleChangeLikeCount: (method: string, commentId: number) => void
-}
 
 const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, handleChangeLikeCount}) => {
 
-    const commentsToRender = commentsArray.map((item) => {
+    const commentsToRender = commentsArray.map<ReactJSXElement>((item: IComment) => {
         return (
             <CommentItem key={item.id} commentItem={item} handleChangeLikeCount={handleChangeLikeCount}/>
         )
@@ -54,7 +59,8 @@ const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, hand
         <main>
             <Grid container spacing={2} sx={{
                 margin: "0 auto",
-                maxWidth: 1096
+                maxWidth: 1096,
+                width: "100%"
             }}>
                 <Grid item xs={8}>
                     <StyledH1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores assumenda
@@ -138,15 +144,39 @@ const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, hand
                 </Grid>
                 <Grid item xs={4}>
                     <StyledSideBarPlaceholder>
-                        Side bar с рекламой и ссылками на статьи
+                        <Stack spacing={1}>
+                            <Skeleton variant="text"/>
+                            <Skeleton variant="circular" width={40} height={40}/>
+                            <Skeleton variant="rectangular" height={118}/>
+                        </Stack>
+                        <Stack spacing={1}>
+                            <Skeleton variant="text"/>
+                            <Skeleton variant="circular" width={40} height={40}/>
+                            <Skeleton variant="rectangular" height={118}/>
+                        </Stack>
+                        <Stack spacing={1}>
+                            <Skeleton variant="text"/>
+                            <Skeleton variant="circular" width={40} height={40}/>
+                            <Skeleton variant="rectangular" height={118}/>
+                        </Stack>
+                        <Stack spacing={1}>
+                            <Skeleton variant="text"/>
+                            <Skeleton variant="circular" width={40} height={40}/>
+                            <Skeleton variant="rectangular" height={118}/>
+                        </Stack>
+                        <Stack spacing={1}>
+                            <Skeleton variant="text"/>
+                            <Skeleton variant="circular" width={40} height={40}/>
+                            <Skeleton variant="rectangular" height={118}/>
+                        </Stack>
                     </StyledSideBarPlaceholder>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} sm={8}>
                     <StyledCommentBlock>
                         {commentsToRender}
                     </StyledCommentBlock>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} sm={8}>
                     <CommentForm handleAddComment={handleAddComment}/>
                 </Grid>
             </Grid>

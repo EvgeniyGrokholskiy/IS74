@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {IComment} from "../../types/types";
 import Avatar from "./img/smileyAvatar.png";
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
+import {ICommentItemProps} from "../../types/types";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
@@ -33,11 +33,10 @@ const StyledButtonContainer = styled.div`
   gap: 10px;
 `
 
+const StyledClosedComment = styled.div`
+  cursor: pointer;
+`
 
-export interface ICommentItemProps {
-    commentItem: IComment
-    handleChangeLikeCount: (method: string, commentId: number) => void
-}
 
 const CommentItem: React.FC<ICommentItemProps> = ({commentItem, handleChangeLikeCount}) => {
 
@@ -77,7 +76,7 @@ const CommentItem: React.FC<ICommentItemProps> = ({commentItem, handleChangeLike
 
         return () => clearInterval(interval)
 
-    }, [])
+    }, [createDate])
 
     useEffect(() => {
         if (likeCount < -9) {
@@ -88,8 +87,9 @@ const CommentItem: React.FC<ICommentItemProps> = ({commentItem, handleChangeLike
 
     return (
         <StyledWrapper>
-            <div style={{display: isOpen ? "none" : "block"}}
-                 onClick={() => setIsOpen(true)}>{"Открыть комментарий"}</div>
+            <StyledClosedComment style={{display: isOpen ? "none" : "block"}}
+                 onClick={() => setIsOpen(true)}>{"Открыть комментарий"}
+            </StyledClosedComment>
             <div style={{display: isOpen ? "block" : "none"}}>
                 <StyledAvatarContainer>
                     <img src={Avatar} alt={"аватар"} height={50} width={50}/>
@@ -99,7 +99,6 @@ const CommentItem: React.FC<ICommentItemProps> = ({commentItem, handleChangeLike
                 <StyledComment>
                     {comment}
                 </StyledComment>
-
                 <StyledButtonContainer>
                     <span>{`Likes: ${likeCount}`}</span>
                     <StyledButton onClick={() => handleChangeLikeCount("plus", id)} data-method={"plus"}>

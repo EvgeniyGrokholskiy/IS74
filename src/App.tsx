@@ -1,19 +1,19 @@
 import './App.css';
-import React, {useState} from 'react';
 import {IComment} from './types/types';
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import React, {useEffect, useState} from 'react';
 import Article from "./components/article/Article";
 
 
-function App() {
+const App: React.FC = () => {
 
     const [comments, setComments] = useState<IComment[]>([
         {
             id: 0,
             name: "Иван",
             email: "123456789@74.ru",
-            comment: "Статья огонь, латынь-супер",
+            comment: "Статья огонь, латынь-супер!",
             createDate: 1655296594000,
             likeCount: 0
         },
@@ -27,13 +27,13 @@ function App() {
         }
     ])
 
-    const handleAddComment = (newComment: IComment) => {
+    const handleAddComment = (newComment: IComment): void => {
         setComments((prevState) => {
             return prevState.concat([newComment])
         })
     }
 
-    const handleChangeLikeCount = (method: string, commentId: number) => {
+    const handleChangeLikeCount = (method: string, commentId: number): void => {
         setComments(comments.map((item) => {
             if (item.id === commentId) {
                 method === "plus" ? item.likeCount++ : item.likeCount--
@@ -43,10 +43,20 @@ function App() {
         }))
     }
 
+    useEffect(() => {
+        const appState = sessionStorage.getItem("appState")
+        appState && setComments(JSON.parse(appState))
+    }, [])
+
+    useEffect(() => {
+        sessionStorage.setItem("appState", JSON.stringify(comments))
+    }, [comments])
+
     return (
         <div className="App">
             <Header/>
-            <Article commentsArray={comments} handleAddComment={handleAddComment} handleChangeLikeCount={handleChangeLikeCount}/>
+            <Article commentsArray={comments} handleAddComment={handleAddComment}
+                     handleChangeLikeCount={handleChangeLikeCount}/>
             <Footer/>
         </div>
     );

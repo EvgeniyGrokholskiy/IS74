@@ -1,15 +1,21 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {IComment} from "../../types/types";
+import {ICommentFormProps, IFormState} from "../../types/types";
 
 const StyledFormWrapper = styled.div`
   padding: 50px;
+  @media screen and (max-width: 600px) {
+    padding: 10px 1%;
+  }
 `
 
 const StyledText = styled.p`
   font-size: 1.5em;
   font-weight: bold;
   text-align: left;
+  @media screen and (max-width: 600px){
+    font-size: 1em;
+  }
 `
 
 const StyledTextArea = styled.textarea`
@@ -28,15 +34,6 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
-interface IFormState {
-    name: string
-    email: string
-    comment: string
-}
-
-interface ICommentFormProps {
-    handleAddComment: (newComment: IComment) => void
-}
 
 const CommentForm: React.FC<ICommentFormProps> = ({handleAddComment}) => {
 

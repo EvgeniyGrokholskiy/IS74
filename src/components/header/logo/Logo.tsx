@@ -2,13 +2,20 @@ import React from 'react';
 import styled from "styled-components";
 
 const StiledDiv = styled.div`
+  border-bottom: 2px solid gray;
   display: flex;
+  flex-wrap: wrap;
   gap: 50px;
   align-items: center;
   justify-content: center;
   font-size: 2em;
   height: 50px;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    font-size: 1em;
+    gap: 5px;
+    height: auto;
+  }
 `
 
 

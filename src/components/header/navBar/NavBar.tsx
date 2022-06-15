@@ -13,19 +13,25 @@ const StyledNavBar = styled.nav`
   top: 0;
   min-height: 50px;
   width: 100%;
+  z-index: 5;
 `;
 
 const Ul = styled.ul`
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 0;
   padding: 0;
   max-width: 1096px;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 `
 
 const ListItem = styled.li`
   list-style: none;
+  margin: 0 5px;
 `
 
 const FakeLink = styled.a`
