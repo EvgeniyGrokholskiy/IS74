@@ -1,6 +1,7 @@
 import {Grid} from '@mui/material';
 import React from 'react';
 import styled from "styled-components";
+import CommentForm from "../commentForm/CommentForm";
 
 const StyledH1 = styled.h1`
   color: #282c34;
@@ -111,6 +112,9 @@ const Article = () => {
                     <StyledSideBarPlaceholder>
                         Side bar с рекламой и ссылками на статьи
                     </StyledSideBarPlaceholder>
+                </Grid>
+                <Grid item xs={8}>
+                    <CommentForm callback={() => {}}/>
                 </Grid>
             </Grid>
 
