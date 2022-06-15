@@ -2,15 +2,18 @@ import {Grid} from '@mui/material';
 import React from 'react';
 import styled from "styled-components";
 import CommentForm from "../commentForm/CommentForm";
+import {IComment} from "../../types/types";
 
 const StyledH1 = styled.h1`
   color: #282c34;
   margin: 20px auto;
+  padding: 0 50px;
   width: 100%;
 `
 
 const StyledParagraph = styled.p`
   margin: 20px auto;
+  padding: 0 50px;
   text-align: justify;
   width: 100%;
 `
@@ -24,7 +27,32 @@ const StyledSideBarPlaceholder = styled.h2`
   writing-mode: vertical-lr;
 `
 
-const Article = () => {
+const StyledCommentBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 0 50px;
+`
+
+interface IArticleProps {
+    commentsArray: IComment[]
+}
+
+const Article:React.FC<IArticleProps> = ({commentsArray}) => {
+
+    const commentsToRender = commentsArray.map((item)=>{
+        return(
+            <div key={item.id}>
+                <span>{item.name}</span>
+                <span>{item.email}</span>
+                <span>{item.comment}</span>
+                <span>{item.likeCount}</span>
+                <span>{item.createDate}</span>
+            </div>
+        )
+    })
+
     return (
         <main>
             <Grid container spacing={2}>
@@ -114,11 +142,14 @@ const Article = () => {
                     </StyledSideBarPlaceholder>
                 </Grid>
                 <Grid item xs={8}>
+                    <StyledCommentBlock>
+                        {commentsToRender}
+                    </StyledCommentBlock>
+                </Grid>
+                <Grid item xs={8}>
                     <CommentForm callback={() => {}}/>
                 </Grid>
             </Grid>
-
-
         </main>
     );
 };

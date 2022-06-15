@@ -78,10 +78,10 @@ const CommentForm: React.FC<ICommentFormProps> = ({callback}) => {
                              placeholder={"Введите имя"}
                              onChange={handleChangeValue}/>
                 <StyledInput type={"email"} required={true} value={formState.email} data-name={"email"}
-                             placeholder={"ВВедите электронную почту"}
+                             placeholder={"Введите электронную почту"}
                              onChange={handleChangeValue}/>
                 <StyledTextArea required={true} value={formState.comment} data-name={"comment"}
-                                placeholder={"Ведите комментарий"}
+                                placeholder={"Введите комментарий"}
                                 onChange={handleChangeValue}/>
                 <button>{"Отправить"}</button>
             </form>
