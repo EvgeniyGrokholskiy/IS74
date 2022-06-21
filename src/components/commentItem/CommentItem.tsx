@@ -25,6 +25,7 @@ const StyledComment = styled.p`
 const StyledButton = styled.button`
   background: none;
   border: none;
+  cursor: pointer;
 `
 
 const StyledButtonContainer = styled.div`

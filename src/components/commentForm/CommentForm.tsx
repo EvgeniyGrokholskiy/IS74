@@ -34,6 +34,10 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
+const StyledButton = styled.button`
+  cursor: pointer;
+`
+
 
 const CommentForm: React.FC<ICommentFormProps> = ({handleAddComment}) => {
 
@@ -80,7 +84,7 @@ const CommentForm: React.FC<ICommentFormProps> = ({handleAddComment}) => {
                 <StyledTextArea required={true} value={formState.comment} data-name={"comment"}
                                 placeholder={"Введите комментарий"}
                                 onChange={handleChangeValue}/>
-                <button>{"Отправить"}</button>
+                <StyledButton>{"Отправить"}</StyledButton>
             </form>
         </StyledFormWrapper>
     );

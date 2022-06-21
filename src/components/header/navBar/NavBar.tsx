@@ -37,6 +37,7 @@ const ListItem = styled.li`
 const FakeLink = styled.a`
   display: inline-block;
   color: inherit;
+  cursor: pointer;
   line-height: 50px;
   list-style: none;
   text-decoration: none;
