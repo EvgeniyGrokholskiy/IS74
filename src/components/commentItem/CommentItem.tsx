@@ -61,7 +61,7 @@ const CommentItem: React.FC<ICommentItemProps> = ({commentItem, handleChangeLike
             const result = Math.floor(difference / hour)
             return `${result} ч.`
         }
-        if (difference > day) {
+        if (difference >= day) {
             const result = Math.floor(difference / day)
             return `${result} д.`
         }
