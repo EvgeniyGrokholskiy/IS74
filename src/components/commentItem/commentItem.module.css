@@ -1,0 +1,14 @@
+.thumbUpIcon, .thumbDownIcon {
+
+}
+
+.thumbUpIcon:hover, .thumbDownIcon:hover {
+    transform: scale(1.2);
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.thumbUpIcon:active, .thumbDownIcon:active {
+    transform: scale(1);
+}

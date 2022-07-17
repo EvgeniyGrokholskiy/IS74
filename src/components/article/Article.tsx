@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-import {Grid, Skeleton, Stack} from '@mui/material';
+import {Button, Card, CardActions, CardContent, Grid, Typography} from '@mui/material';
+
 import CommentForm from "../commentForm/CommentForm";
 import CommentItem from "../commentItem/CommentItem";
 import {IArticleProps, IComment} from "../../types/types";
@@ -28,13 +29,6 @@ const StyledParagraph = styled.p`
   }
 `
 
-const StyledSideBarPlaceholder = styled.h2`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 50px 2%;
-`
-
 const StyledCommentBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,6 +42,70 @@ const StyledCommentBlock = styled.div`
 
 
 const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, handleChangeLikeCount}) => {
+
+    const [card] = useState([
+        {
+            title: "title1",
+            article: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus earum explicabo\n" +
+                "                        officia perspiciatis\n" +
+                "                        reiciendis sint sit! Accusamus accusantium ad aliquam amet animi architecto autem commodi\n" +
+                "                        delectus\n" +
+                "                        deserunt distinctio dolorem dolorum et eveniet excepturi explicabo facere fugit itaque labore\n" +
+                "                        laborum\n" +
+                "                        libero magni nesciunt nobis, nostrum nulla quaerat quia quibusdam reiciendis rem tempora\n" +
+                "                        temporibus\n" +
+                "                        totam unde vel velit! Aliquam commodi consequatur consequuntur corporis dignissimos eligendi\n" +
+                "                        facere,\n" +
+                "                        maxime molestiae nam non numquam omnis optio quibusdam reiciendis rerum similique sint tempore\n" +
+                "                        ut,"
+        },
+        {
+            title: "title2",
+            article: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus earum explicabo\n" +
+                "                        officia perspiciatis\n" +
+                "                        reiciendis sint sit! Accusamus accusantium ad aliquam amet animi architecto autem commodi\n" +
+                "                        delectus\n" +
+                "                        deserunt distinctio dolorem dolorum et eveniet excepturi explicabo facere fugit itaque labore\n" +
+                "                        laborum\n" +
+                "                        libero magni nesciunt nobis, nostrum nulla quaerat quia quibusdam reiciendis rem tempora\n" +
+                "                        temporibus\n" +
+                "                        totam unde vel velit! Aliquam commodi consequatur consequuntur corporis dignissimos eligendi\n" +
+                "                        facere,\n" +
+                "                        maxime molestiae nam non numquam omnis optio quibusdam reiciendis rerum similique sint tempore\n" +
+                "                        ut,"
+        },
+        {
+            title: "title3",
+            article: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus earum explicabo\n" +
+                "                        officia perspiciatis\n" +
+                "                        reiciendis sint sit! Accusamus accusantium ad aliquam amet animi architecto autem commodi\n" +
+                "                        delectus\n" +
+                "                        deserunt distinctio dolorem dolorum et eveniet excepturi explicabo facere fugit itaque labore\n" +
+                "                        laborum\n" +
+                "                        libero magni nesciunt nobis, nostrum nulla quaerat quia quibusdam reiciendis rem tempora\n" +
+                "                        temporibus\n" +
+                "                        totam unde vel velit! Aliquam commodi consequatur consequuntur corporis dignissimos eligendi\n" +
+                "                        facere,\n" +
+                "                        maxime molestiae nam non numquam omnis optio quibusdam reiciendis rerum similique sint tempore\n" +
+                "                        ut,"
+        },
+    ])
+
+    const cardToSideBar = card.map(item => (
+        <Card sx={{minWidth: 275}} key={item.title}>
+            <CardContent>
+                <Typography sx={{mb: 1.5}} color="text.secondary">
+                    {item.title}
+                </Typography>
+                <Typography variant="body2">
+                    {item.article}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small">Learn More</Button>
+            </CardActions>
+        </Card>
+    ))
 
     const commentsToRender = commentsArray.map<ReactJSXElement>((item: IComment) => {
         return (
@@ -142,34 +200,8 @@ const Article: React.FC<IArticleProps> = ({commentsArray, handleAddComment, hand
                         quos
                         rerum similique temporibus!</StyledParagraph>
                 </Grid>
-                <Grid item xs={4}>
-                    <StyledSideBarPlaceholder>
-                        <Stack spacing={1}>
-                            <Skeleton variant="text"/>
-                            <Skeleton variant="circular" width={40} height={40}/>
-                            <Skeleton variant="rectangular" height={118}/>
-                        </Stack>
-                        <Stack spacing={1}>
-                            <Skeleton variant="text"/>
-                            <Skeleton variant="circular" width={40} height={40}/>
-                            <Skeleton variant="rectangular" height={118}/>
-                        </Stack>
-                        <Stack spacing={1}>
-                            <Skeleton variant="text"/>
-                            <Skeleton variant="circular" width={40} height={40}/>
-                            <Skeleton variant="rectangular" height={118}/>
-                        </Stack>
-                        <Stack spacing={1}>
-                            <Skeleton variant="text"/>
-                            <Skeleton variant="circular" width={40} height={40}/>
-                            <Skeleton variant="rectangular" height={118}/>
-                        </Stack>
-                        <Stack spacing={1}>
-                            <Skeleton variant="text"/>
-                            <Skeleton variant="circular" width={40} height={40}/>
-                            <Skeleton variant="rectangular" height={118}/>
-                        </Stack>
-                    </StyledSideBarPlaceholder>
+                <Grid item xs={4} spacing={2} sx={{display: "flex", flexDirection: "column", gap: "20px"}}>
+                    {cardToSideBar}
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <StyledCommentBlock>

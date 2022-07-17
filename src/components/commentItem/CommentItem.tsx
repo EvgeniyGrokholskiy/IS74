@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import Avatar from "./img/smileyAvatar.png";
 import React, {useEffect, useState} from "react";
-import {ICommentItemProps} from "../../types/types";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+
+import Avatar from "./img/smileyAvatar.png";
+import style from "./commentItem.module.css";
+import {ICommentItemProps} from "../../types/types";
 
 const StyledWrapper = styled.div`
   border: 2px solid gray;
@@ -103,10 +105,10 @@ const CommentItem: React.FC<ICommentItemProps> = ({commentItem, handleChangeLike
                 <StyledButtonContainer>
                     <span>{`Likes: ${likeCount}`}</span>
                     <StyledButton onClick={() => handleChangeLikeCount("plus", id)} data-method={"plus"}>
-                        <ThumbUpIcon/>
+                        <ThumbUpIcon className={style.thumbUpIcon}/>
                     </StyledButton>
                     <StyledButton onClick={() => handleChangeLikeCount("minus", id)} data-method={"minus"}>
-                        <ThumbDownIcon/>
+                        <ThumbDownIcon className={style.thumbDownIcon}/>
                     </StyledButton>
                 </StyledButtonContainer>
             </div>

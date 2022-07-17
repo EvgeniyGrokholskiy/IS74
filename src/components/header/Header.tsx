@@ -1,15 +1,15 @@
 import React from 'react';
-import NavBar from "./navBar/NavBar";
+
 import Logo from "./logo/Logo";
+import NavBar from "./navBar/NavBar";
+import styles from "./header.module.css";
 
 
-const Header = () => {
-    return (
-        <>
-            <Logo/>
-            <NavBar/>
-        </>
-    );
-};
+const Header = () => (
+    <div className={styles.wrapper}>
+        <Logo/>
+        <NavBar/>
+    </div>
+);
 
 export default Header;
