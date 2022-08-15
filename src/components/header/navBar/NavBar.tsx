@@ -49,7 +49,6 @@ const FakeLink = styled.a`
 `
 
 
-
 const NavBar = () => {
     return (
         <StyledNavBar>

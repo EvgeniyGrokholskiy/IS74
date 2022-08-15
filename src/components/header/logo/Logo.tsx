@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const StiledDiv = styled.div`
   display: flex;
-  
   justify-content: center;
   border-bottom: 2px solid gray;
   height: 50px;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+
 import {ICommentFormProps, IFormState} from "../../types/types";
 
 const StyledFormWrapper = styled.div`
