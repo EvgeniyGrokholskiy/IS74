@@ -21,7 +21,7 @@ const App: React.FC = () => {
             id: 1,
             name: "Васья",
             email: "987654321@74.ru",
-            comment: "Многа букаф не асилел",
+            comment: "Многа букафaaaaaaaaaaaaaaaaa не асилел",
             createDate: 1655282194000,
             likeCount: 0
         }
