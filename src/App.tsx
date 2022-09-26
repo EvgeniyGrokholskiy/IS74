@@ -5,7 +5,6 @@ import Footer from "./components/footer/Footer";
 import React, {useEffect, useState} from 'react';
 import Article from "./components/article/Article";
 
-
 const App: React.FC = () => {
 
     const [comments, setComments] = useState<IComment[]>([
